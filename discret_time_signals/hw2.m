@@ -2,27 +2,41 @@
 M = 512;
 k_M = 1:M;
 x = input(k_M);
-subplot(4,1,1)
+subplot(5,1,1)
 plot(k_M,x);
+title('Transmitted signal');
+xlabel('M-point');
+ylabel('x(k)');
 %3.2
 L = 2048;
 k_L = 1:L;
 noise = rand(1,L)/10-0.05;
+subplot(5,1,2)
+plot(k_L,noise);
+title('Random noise')
+xlabel('L-point');
+ylabel('\eta(k)');
 %3.3
 y = output(k_L,noise);
-subplot(4,1,2)
+subplot(5,1,3)
 plot(k_L,y);
+title('Received signal')
+xlabel('L-point');
+ylabel('y(k)');
 %3.4
 ryx = linear_corr(x,y);
-subplot(4,1,3)
+subplot(5,1,4)
 plot(k_L,ryx);
+title('Linear cross-correlation')
+xlabel('L-point');
+ylabel('r_{yx}');
 %3.5
 ryx_norm = norm_licorr(x,y);
-subplot(4,1,4)
+subplot(5,1,5)
 plot(k_L,ryx_norm);
-
-rxx = linear_corr(x,x);
-ryy = linear_corr(y,y);
+title('Normalized linear cross-correlation')
+xlabel('L-point');
+ylabel('\rho_{yx}');
 
 function f = cal_f(k)
     f_s = 1E6;
@@ -53,7 +67,7 @@ function z = linear_corr(x,y)
             end
         end
     end
-    D= D/L;
+    D = D/L;
     z = D*y';
 end
 
