@@ -52,7 +52,7 @@ end
 
 function x = input(k)
     f_s = 1E6;
-    x = sin(2*pi.*cal_f(k).*k/f_s).*(k>=0).*(k<=512);
+    x = sin(2*pi*cal_f(k).*k/f_s).*(k>=0).*(k<=512);
 end
 
 function z = linear_corr(x,y)
